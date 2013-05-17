@@ -344,9 +344,18 @@ Spreadsheet.prototype.getRows = function(callback){
           
           callback(null,rows);
         }
+        else if(!_.isUndefined(result.entry) && _.isObject(result.entry)){
+          rows[1] = [];
+          rows[1].push(result.entry);
+          rows.total_rows = 1;
+          rows.last_row = 1
+          rows.next_row = 2;
+          callback(null, rows);
+        }
         else{
           rows.total_rows = 0;
           rows.last_row = 1
+          rows.next_row = 1;
           callback(null, rows);
         }
         
